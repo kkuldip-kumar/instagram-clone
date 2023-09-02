@@ -39,9 +39,7 @@ const store = configureStore({
     [chatApi.reducerPath]: chatApi.reducer,
     [postApi.reducerPath]: postApi.reducer,
   },
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
   middleware: (getDefaultMiddleware) =>
-    // getDefaultMiddleware().concat(userApi.middleware),
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
@@ -50,12 +48,8 @@ const store = configureStore({
       .concat(userApi.middleware)
       .concat(postApi.middleware)
       .concat(chatApi.middleware),
+  devTools: false,
 });
 setupListeners(store.dispatch);
-// {
-//   serializableCheck: {
-//     ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//   },
-// }
 export let persistor = persistStore(store);
 export default store;

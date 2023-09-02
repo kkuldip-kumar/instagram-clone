@@ -1,5 +1,4 @@
 import React from "react";
-import image from "@/assets/user.png";
 import postImg from "@/assets/insta_pic.jpg";
 
 const PostImage = () => {
