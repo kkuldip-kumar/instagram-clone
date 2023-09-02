@@ -9,6 +9,7 @@ const post = require("./routes/postRoutes");
 const message = require("./routes/messageRoute");
 const chat = require("./routes/chatRoute");
 const comment = require("./routes/commentRoutes");
+const corsOptions = require("./config/corsOptions");
 
 const dbSetup = require("./config/database");
 const socketio = require("socket.io");
@@ -19,14 +20,15 @@ dbSetup();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(
-  cors({
-    // origin: "http://localhost:5173",
-    origin: "https://instgram.onrender.com/",
-  })
-);
+app.use(cors(corsOptions));
+// app.use(
+//   cors({
+//     // origin: "http://localhost:5173",
+//     origin: "https://instgram.onrender.com/",
+//   })
+// );
 let users = [];
-
+app.use("/api", require("./routes/root"));
 app.use("/api", chat);
 app.use("/api", message);
 app.use("/api", user);
