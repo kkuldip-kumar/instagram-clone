@@ -15,14 +15,14 @@ const socketio = require("socket.io");
 
 dotenv.config();
 const port = process.env.PORT || 4000;
-
 dbSetup();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    // origin: "http://localhost:5173",
+    origin: "https://instgram.onrender.com/",
   })
 );
 let users = [];
